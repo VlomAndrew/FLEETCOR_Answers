@@ -1,0 +1,18 @@
+ответы к тестовому заданию связанному с базой данных 
+1) Select model,  hd from PC
+where (cd = '12x' or cd = '24x' or cd = '4x') and price > 800
+2) select count(A.mc) as Makers from (select count(maker) as mc from Product group by maker having count(model) > 1) as A
+3)select distinct model, price from PC where model in (select model from Product where maker = 'A' or maker = 'B')
+union all 
+select distinct model, price from Laptop where model in (select model from Product where maker = 'A' or maker = 'B')
+union all
+select distinct model, price from Printer where model in (select model from Product where maker = 'A' or maker = 'B') 
+order by price desc
+4)select maker from product
+inner join Laptop on product.model = laptop.model and speed = 12
+where maker in (select maker from product where model in (select model from Printer where price > 1000
+5)select avg(price) from Printer
+inner join product on product.model = printer.model
+and printer.type <> 'Matrix'
+and maker in (select maker from product inner join PC on PC.model = product.model group by maker having avg(PC.price) > 1000)
+and maker in (select maker from product inner join Laptop on laptop.model = product.model group by maker having avg(laptop.price) > 1000)
