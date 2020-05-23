@@ -9,7 +9,7 @@ union all
 select distinct model, price from Printer where model in (select model from Product where maker = 'A' or maker = 'B') 
 order by price desc
 4)select maker from product
-inner join Laptop on product.model = laptop.model and speed = 12
+inner join Laptop on product.model = laptop.model and speed = 12x
 where maker in (select maker from product where model in (select model from Printer where price > 1000
 5)select avg(price) from Printer
 inner join product on product.model = printer.model
